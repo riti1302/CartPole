@@ -8,7 +8,7 @@ env.reset()
 population_size = 800
 required_score = 50
 
-training_data = np.load('Data/saved-800-10000-mean-60-median-57.npy')
+training_data = np.load('Data/saved-800-10000-mean-61-median-57.npy')
 model = train_model(training_data)
 
 scores = []
