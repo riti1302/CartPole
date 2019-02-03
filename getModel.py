@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import tensorflow as tf
 import time
 from tensorflow.keras.models import Sequential
@@ -12,27 +13,23 @@ def Get_model(input_size):
 
     model.add(Dense(128,input_shape=(input_size,)))
     model.add(Activation('relu'))
-    model.add(Dropout(0.8))
-
-    model.add(Dense(128))
-    model.add(Activation('relu'))
-    model.add(Dropout(0.8))
+    model.add(Dropout(0.6))
 
     model.add(Dense(256))
     model.add(Activation('relu'))
-    model.add(Dropout(0.8))
+    model.add(Dropout(0.6))
 
     model.add(Dense(512))
     model.add(Activation('relu'))
-    model.add(Dropout(0.8))
+    model.add(Dropout(0.6))
 
     model.add(Dense(256))
     model.add(Activation('relu'))
-    model.add(Dropout(0.8))
+    model.add(Dropout(0.6))
 
     model.add(Dense(128))
     model.add(Activation('relu'))
-    model.add(Dropout(0.8))
+    model.add(Dropout(0.6))
 
     model.add(Dense(2))
     model.add(Activation('softmax'))
@@ -46,12 +43,24 @@ def Get_model(input_size):
 def train_model(training_data, model=False):
 
     X = np.array([i[0] for i in training_data])
-    y = np.array([i[1] for i in training_data])
+    Y = np.array([i[1] for i in training_data])
 
     name = int(time.time())
     tensorboard = TensorBoard(log_dir='logs/{}'.format(name))
     model = Get_model(input_size = len(X[0]))
     
-    model.fit(X, y, batch_size = 500, epochs = 5, callbacks = [tensorboard])
+    model.fit(X, Y, epochs = 5, callbacks = [tensorboard])
     
     return model
+
+
+def save_model(model):
+    if not os.path.exists('Data/model'):
+        os.makedirs('Data/model')
+
+    model.save('Data/model/new_model.model')
+    print("Model saved")
+    return
+
+training_data = np.load('Data/training_data/saved-500-10000-mean-61-median-58.npy')
+save_model(train_model(training_data))

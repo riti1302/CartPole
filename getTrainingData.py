@@ -7,7 +7,7 @@ from collections import Counter
 
 env = gym.make('CartPole-v0')
 env.reset()
-goal_steps = 800
+population_size = 500
 required_score = 50
 episodes = 10000
 
@@ -19,7 +19,7 @@ def GetInitialPopulation():
 		score = 0
 		game_memory = []
 		prev_observation = []
-		for i in range(goal_steps):
+		for i in range(population_size):
 			action = random.randrange(0,2)
 			observation, reward, done, info = env.step(action)
 
@@ -43,16 +43,16 @@ def GetInitialPopulation():
 		env.reset()
 		scores.append(score)
 
-	if not os.path.exists('Data/'):
-		os.makedirs('Data/')
+	if not os.path.exists('Data/training_data/'):
+		os.makedirs('Data/training_data/')
 
 	Mean = mean(accepted_scores)
 	Median = median(accepted_scores)
 
-	name = 'saved-{}-{}-mean-{}-median-{}'.format(goal_steps, episodes, int(Mean),int(Median))
+	name = 'saved-{}-{}-mean-{}-median-{}'.format(population_size, episodes, int(Mean),int(Median))
 	
 	training_data_save = np.array(training_data)
-	np.save('Data/{}.npy'.format(name), training_data_save)
+	np.save('Data/training_data/{}.npy'.format(name), training_data_save)
 
 	print('Average accepted score: ', Mean)
 	print('Median accepted scores: ', Median)

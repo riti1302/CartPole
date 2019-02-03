@@ -1,19 +1,18 @@
 import gym
 import random
 import numpy as np
-from getModel import train_model
+from tensorflow.keras.models import load_model
 
 env = gym.make('CartPole-v0')
 env.reset()
-population_size = 800
+population_size = 500
 required_score = 50
 
-training_data = np.load('Data/saved-800-10000-mean-61-median-57.npy')
-model = train_model(training_data)
+model = load_model('Data/model/new_model.model')
 
 scores = []
 choices = []
-for episode in range(10):
+for episode in range(50):
     score = 0
     game_memory = []
     prev_obs = []
