@@ -62,5 +62,5 @@ def save_model(model):
     print("Model saved")
     return
 
-training_data = np.load('Data/training_data/saved-500-10000-mean-61-median-58.npy')
+training_data = np.load('Data/training_data/saved-500-5000-mean-4-median-4-complete.npy')
 save_model(train_model(training_data))

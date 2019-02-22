@@ -5,11 +5,11 @@ import numpy as np
 from statistics import median, mean
 from collections import Counter
 
-env = gym.make('CartPole-v0')
-env.reset()
 population_size = 500
 required_score = 50
-episodes = 10000
+episodes = 20000
+env = gym.make('CartPole-v1')
+env.reset()
 
 def GetInitialPopulation():
 	training_data = []
@@ -22,6 +22,8 @@ def GetInitialPopulation():
 		for i in range(population_size):
 			action = random.randrange(0,2)
 			observation, reward, done, info = env.step(action)
+			print(prev_observation)
+			print(prev_observation.shape)
 
 			if len(prev_observation) > 0:
 				game_memory.append([prev_observation, action])
@@ -43,6 +45,9 @@ def GetInitialPopulation():
 		env.reset()
 		scores.append(score)
 
+	#print("prev obs:", training_data)
+	#print(len(training_data))
+
 	if not os.path.exists('Data/training_data/'):
 		os.makedirs('Data/training_data/')
 
@@ -52,7 +57,7 @@ def GetInitialPopulation():
 	name = 'saved-{}-{}-mean-{}-median-{}'.format(population_size, episodes, int(Mean),int(Median))
 	
 	training_data_save = np.array(training_data)
-	np.save('Data/training_data/{}.npy'.format(name), training_data_save)
+	#np.save('Data/training_data/{}.npy'.format(name), training_data_save)
 
 	print('Average accepted score: ', Mean)
 	print('Median accepted scores: ', Median)

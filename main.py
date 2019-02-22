@@ -3,7 +3,7 @@ import random
 import numpy as np
 from tensorflow.keras.models import load_model
 
-env = gym.make('CartPole-v0')
+env = gym.make('CartPole-v1')
 env.reset()
 population_size = 500
 required_score = 50
@@ -33,7 +33,8 @@ for episode in range(50):
         score+=reward
         if done: 
             break
-
+    mean = sum(scores)/(episode+1)
+    print(f"Episode {episode+1}   Score: {score}  Mean: {mean}")
     scores.append(score)
 
 print('Average Score:',sum(scores)/len(scores))
