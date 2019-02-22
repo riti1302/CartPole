@@ -5,4 +5,11 @@ This is a reinforcement learning problem. I used Deep Q-learning algorithm to bu
 ## Model Architecture
 <p align="center"> <img src="Model.png"/> </p>
 
+## Output Graphs
+Accuracy
+<p align="center"> <img src="accuracy.png"/> </p>
+
+Loss
+<p align="center"> <img src="loss.png"/> </p>
+
 
