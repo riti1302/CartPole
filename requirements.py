@@ -1,9 +1,9 @@
+#### ESSENTIAL LIBRARIES FOR MAIN FUNCTIONALITY ####
+
 #The gym library a collection of test problems — environments — that you can use to work
 # out your reinforcement learning algorithms. These environments have a shared interface,
 #allowing you to write general algorithms.
 gym
-
-#### ESSENTIAL LIBRARIES FOR MAIN FUNCTIONALITY ####
 
 # Neural net and related library.
 ## Tensorflow Requirements ##
