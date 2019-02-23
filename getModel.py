@@ -6,6 +6,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dropout, Dense, Activation
 from tensorflow.keras.callbacks import TensorBoard
 
+file_path = 'Data/training_data/saved-500-5000-mean-4-median-4-complete.npy'
 
 def Get_model(input_size):
 
@@ -62,5 +63,5 @@ def save_model(model):
     print("Model saved")
     return
 
-training_data = np.load('Data/training_data/saved-500-5000-mean-4-median-4-complete.npy')
+training_data = np.load(file_path)
 save_model(train_model(training_data))
