@@ -2,7 +2,7 @@
 
 This is a reinforcement learning problem. I used Deep Q-learning algorithm to build this game bot.
 
-<p align="center"> <img src="Model.png"/> </p>
+<p align="center"> <img src="sample.gif"/> </p>
 
 ## Usage
 Clone or download the repository by following command:    
